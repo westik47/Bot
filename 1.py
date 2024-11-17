@@ -1,3 +1,5 @@
+
+# -*- coding: utf-8 -*-
 import telebot
 bot = telebot.TeleBot("7600951342:AAE_FTva76FuozChuLWggGSULXjRCoC5YpQ")
 
@@ -5,7 +7,7 @@ bot = telebot.TeleBot("7600951342:AAE_FTva76FuozChuLWggGSULXjRCoC5YpQ")
 def handle_text(message):
     bot.send_message(message.chat.id, 'Оклад по званию?  ⭐')
     bot.register_next_step_handler(message, num1_fun)
-    
+
 def validate_input(min_value, max_value):
     def decorator(func):
         def wrapper(message, *args, **kwargs):
@@ -79,20 +81,20 @@ def num3_fun(message, data):
 def num4_fun(message, data):
     data['num4'] = int(message.text)
     num5_fun(message, data)
-    
+
 def num5_fun(message, data):
     num1 = data['num1']
     num2 = data['num2']
     num3 = data['num3']
     num4 = data['num4']
-    
+
     # Расчет значений
     A = num1 + num2
     B = A * num3 / 100
     X = A + B
     C = X * 0.8983
-    result = C * num4 / 100  
-    
+    result = C * num4 / 100
+
     bot.send_message(message.chat.id, f'Результат: {result:.2f}')
 
 bot.polling(none_stop=True)
